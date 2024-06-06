@@ -51,7 +51,7 @@
         <button @click="ajouterFonction('exp')" class="bgGris">e</button>
       </div>
       <div class="boutton">
-        <button @click="ajouterFonction('ln')" class="bgGris">ln</button>
+        <button @click="ajouterLn()" class="bgGris">ln</button>
       </div>
       <div class="boutton">
         <button @click="ajouterFonction('log')" class="bgGris">log</button>
@@ -132,9 +132,11 @@ export default {
     ajouterOperateur(op) {
       if (op === '=') {
         this.evaluerExpression();
-      } else if (op === '^') {
-        this.calcul = this.calcul + '**';
-      } else {
+      }
+      // else if (op === '^') {
+      //   this.calcul = this.calcul + '**';
+      // } 
+      else {
         this.calcul = this.calcul + op;
       }
     },
@@ -162,7 +164,7 @@ export default {
         this.calcul = this.calcul + 'sqrt(';
       } else if (fn === 'nRoot') {
         this.calcul = this.calcul + 'nthRoot(';
-      } else if (fn === 'sin' || fn === 'cos' || fn === 'tan' || fn === 'log' || fn === 'ln') {
+      } else if (fn === 'sin' || fn === 'cos' || fn === 'tan' || fn === 'log') {
         this.calcul = this.calcul + fn + '(';
       } else if (fn === 'exp') {
         this.calcul = this.calcul + 'exp(';
@@ -170,7 +172,7 @@ export default {
         this.calcul = this.calcul + 'pi';
       } else if (fn === 'factorial') {
         this.calcul = this.calcul + '!';
-      }
+      } 
     },
     ajouterPi(){
       if (this.calcul === "0") {
@@ -178,6 +180,9 @@ export default {
       } else {
         this.calcul = this.calcul + 'pi';
       }
+    },
+    ajouterLn() {
+
     }
   }
 }
