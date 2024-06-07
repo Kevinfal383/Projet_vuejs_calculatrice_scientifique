@@ -90,10 +90,10 @@
         <button @click="ajouterOperateur('=')" class="egale">=</button>
       </div>
       <div class="boutton">
-        <button @click="ajouterOperateur('**2')" class="bgGris">x²</button>
+        <button @click="ajouterOperateur('^2')" class="bgGris">x²</button>
       </div>
       <div class="boutton">
-        <button @click="ajouterOperateur('**3')" class="bgGris">x³</button>
+        <button @click="ajouterOperateur('^3')" class="bgGris">x³</button>
       </div>
       <div class="boutton">
         <button @click="ajouterPi()" class="bgGris">π</button>
@@ -140,9 +140,10 @@ export default {
         this.calcul = this.calcul + op;
       }
     },
-    evaluerExpression() {
+   evaluerExpression() {
       try {
-        this.calcul = String(evaluate(this.calcul));
+        let expression = this.pretraiterExpression(this.calcul);
+        this.calcul = String(evaluate(expression));
       } catch (e) {
         this.calcul = "Syntaxe erreur";
       }
@@ -182,8 +183,17 @@ export default {
       }
     },
     ajouterLn() {
-
+      if (this.calcul === "0") {
+        this.calcul = 'ln(';
+      } else {
+        this.calcul = this.calcul + 'ln(';
+      }
+    },
+    pretraiterExpression(expression) {
+      return expression.replace(/ln/g, 'log');
     }
+    
+    
   }
 }
 </script>
